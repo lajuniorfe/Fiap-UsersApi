@@ -5,6 +5,7 @@ using System.Text;
 using UsersApi.Applications.Auth.DTO;
 using UsersApi.Applications.Auth.Services.Interfaces;
 using UsersApi.Applications.UsuarioApp.Services;
+using UsersApi.Applications.UsuarioApp.Services.Interface;
 using UsersApi.Entities.Usuarios;
 using UsersApi.Entities.Usuarios.Enums;
 
@@ -12,10 +13,10 @@ namespace UsersApi.Applications.Auth.Services
 {
     public class AuthAppService: IAuthAppService
     {
-        private readonly UsuarioAppService usuarioAppServices;
+        private readonly IUsuarioAppService usuarioAppServices;
         private readonly IConfiguration _configuration;
 
-        public AuthAppService(UsuarioAppService usuarioAppServices, IConfiguration configuration)
+        public AuthAppService(IUsuarioAppService usuarioAppServices, IConfiguration configuration)
         {
             this.usuarioAppServices = usuarioAppServices;
             _configuration = configuration;

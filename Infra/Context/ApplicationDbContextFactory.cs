@@ -12,7 +12,7 @@ namespace UsersApi.Infra.Context
             var basePath = Directory.GetCurrentDirectory();
 
             var configuration = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
-                .SetBasePath(Path.Combine(basePath, "../FIAPCloudGames.Api"))
+                .SetBasePath(Path.Combine(basePath, "../UsersApi"))
                 .AddJsonFile("appsettings.json")
                 .Build();
 
