@@ -1,5 +1,7 @@
-﻿using Users.App.UsuarioApp.DTO.Request;
+﻿using MassTransit;
+using Users.App.UsuarioApp.DTO.Request;
 using Users.App.UsuarioApp.DTO.Response;
+using Users.AppService.events;
 using Users.Dominio.Usuarios;
 using Users.Dominio.Usuarios.Enums;
 using Users.Dominio.Usuarios.Repository;
@@ -11,15 +13,17 @@ namespace Users.App.Usuarios.Services
     {
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly BaseLogger<UsuarioAppService> _logger;
+        private readonly IRabbitMqPublisher _publisher;
 
 
-        public UsuarioAppService(IUsuarioRepository usuarioRepository, BaseLogger<UsuarioAppService> logger)
+        public UsuarioAppService(IUsuarioRepository usuarioRepository, BaseLogger<UsuarioAppService> logger, IRabbitMqPublisher publishEndpoint)
         {
             _usuarioRepository = usuarioRepository;
             _logger = logger;
+            _publisher = publishEndpoint;
         }
 
-        public void CadastrarUsuario(UsuarioRequest request)
+        public async Task CadastrarUsuario(UsuarioRequest request)
         {
             try
             {
@@ -31,6 +35,11 @@ namespace Users.App.Usuarios.Services
                     throw new Exception("Usuário existente!");
 
                 _usuarioRepository.Cadastrar(usuario);
+
+                await _publisher.PublishAsync(
+                     "user-created",
+                     new UserCreatedEvent(usuario.Id, usuario.Nome, usuario.Email));
+
                 _logger.LogInformation($"Usuário {request.Email} cadastrado com sucesso.");
             }
             catch (Exception ex)
@@ -95,6 +104,6 @@ namespace Users.App.Usuarios.Services
 
         }
 
-      
+
     }
 }

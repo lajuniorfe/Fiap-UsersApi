@@ -40,14 +40,14 @@ namespace Users.Infra.Usuarios.Repositories
         public Usuario ObterPorId(Guid id)
             => _dbSet.FirstOrDefault(entity => entity.Id == id);
 
-        Usuario? IUsuarioRepository.AutenticarUsuario(string email, string senha)
+        public Usuario? AutenticarUsuario(string email, string senha)
         {
-            throw new NotImplementedException();
+            return _dbSet.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
 
-        Usuario? IUsuarioRepository.BuscarUsuarioEmail(string email)
+        public Usuario? BuscarUsuarioEmail(string email)
         {
-            throw new NotImplementedException();
+            return _dbSet.FirstOrDefault(u => u.Email == email);
         }
     }
 }
