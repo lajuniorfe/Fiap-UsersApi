@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Users.AppService.Auth.DTOs;
-using Users.AppService.Auth.Services.Interfaces;
+using Users.Api.AppService.Auth.DTOs;
+using Users.Api.AppService.Auth.Services;
 
 namespace Users.Api.Controllers
 {

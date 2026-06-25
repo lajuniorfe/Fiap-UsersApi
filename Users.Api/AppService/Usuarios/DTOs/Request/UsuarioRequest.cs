@@ -1,4 +1,4 @@
-﻿namespace Users.App.UsuarioApp.DTO.Request
+﻿namespace Users.Api.AppService.Usuarios.DTOs.Request
 {
     public class UsuarioRequest
     {

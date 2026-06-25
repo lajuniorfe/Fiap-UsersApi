@@ -1,13 +1,12 @@
-﻿using MassTransit;
-using Users.App.UsuarioApp.DTO.Request;
-using Users.App.UsuarioApp.DTO.Response;
+﻿using Users.Api.AppService.Usuarios.DTOs.Request;
+using Users.Api.AppService.Usuarios.DTOs.Response;
 using Users.AppService.events;
 using Users.Dominio.Usuarios;
 using Users.Dominio.Usuarios.Enums;
 using Users.Dominio.Usuarios.Repository;
 using Users.Infra.Logger;
 
-namespace Users.App.Usuarios.Services
+namespace Users.Api.AppService.Usuarios.Services
 {
     public class UsuarioAppService : IUsuarioAppService
     {

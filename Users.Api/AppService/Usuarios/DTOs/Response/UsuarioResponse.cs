@@ -1,4 +1,4 @@
-﻿namespace Users.App.UsuarioApp.DTO.Response
+﻿namespace Users.Api.AppService.Usuarios.DTOs.Response
 {
     public class UsuarioResponse
     {

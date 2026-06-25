@@ -1,7 +1,6 @@
-﻿
-using Users.AppService.Auth.DTOs;
+﻿using Users.Api.AppService.Auth.DTOs;
 
-namespace Users.AppService.Auth.Services.Interfaces
+namespace Users.Api.AppService.Auth.Services
 {
     public interface IAuthAppService
     {

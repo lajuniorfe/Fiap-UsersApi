@@ -1,4 +1,4 @@
-﻿namespace Users.AppService.Auth.DTOs
+﻿namespace Users.Api.AppService.Auth.DTOs
 {
     public class AuthUsuario
     {

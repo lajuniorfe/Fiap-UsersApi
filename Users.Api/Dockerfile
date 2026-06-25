@@ -1,30 +1,40 @@
-# Acesse https://aka.ms/customizecontainer para saber como personalizar seu contêiner de depuração e como o Visual Studio usa este Dockerfile para criar suas imagens para uma depuração mais rápida.
+#FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+#WORKDIR /src
+#
+#
+#COPY ["Users.Api.csproj", "."]
+#RUN dotnet restore "Users.Api.csproj"
+#
+#COPY . .
+#RUN dotnet build "Users.Api.csproj" -c Release -o /app/build
+#
+#FROM build AS publish
+#RUN dotnet publish "Users.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+#
+#FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+#WORKDIR /app
+#
+#COPY --from=publish /app/publish .
+#
+#ENTRYPOINT ["dotnet", "Users.Api.dll"]
 
-# Esta fase é usada durante a execução no VS no modo rápido (Padrão para a configuração de Depuração)
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
 
-
-# Esta fase é usada para compilar o projeto de serviço
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Users.Api/Users.Api.csproj", "Users.Api/"]
-RUN dotnet restore "./Users.Api/Users.Api.csproj"
+
+# copia TUDO (solution inteira)
 COPY . .
-WORKDIR "/src/Users.Api"
-RUN dotnet build "./Users.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Esta fase é usada para publicar o projeto de serviço a ser copiado para a fase final
+
+
+# build do projeto correto
+RUN dotnet build Users.Api.csproj -c Release -o /app/build
+
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Users.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish Users.Api.csproj -c Release -o /app/publish /p:UseAppHost=false
 
-# Esta fase é usada na produção ou quando executada no VS no modo normal (padrão quando não está usando a configuração de Depuração)
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
 ENTRYPOINT ["dotnet", "Users.Api.dll"]

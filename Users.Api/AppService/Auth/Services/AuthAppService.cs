@@ -3,13 +3,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Users.App.Usuarios.Services;
-using Users.AppService.Auth.DTOs;
-using Users.AppService.Auth.Services.Interfaces;
+using Users.Api.AppService.Auth.DTOs;
+using Users.Api.AppService.Usuarios.Services;
 using Users.Dominio.Usuarios;
 using Users.Dominio.Usuarios.Enums;
 
-namespace Users.AppService.Auth.Services
+namespace Users.Api.AppService.Auth.Services
 {
     public class AuthAppService: IAuthAppService
     {

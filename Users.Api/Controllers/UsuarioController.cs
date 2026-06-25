@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Users.App.UsuarioApp.DTO.Request;
-using Users.App.Usuarios.Services;
+using Users.Api.AppService.Usuarios.DTOs.Request;
+using Users.Api.AppService.Usuarios.Services;
 
 namespace Users.Api.Controllers
 {
@@ -43,7 +43,7 @@ namespace Users.Api.Controllers
         /// <response code="200">Lista de usuários retornada com sucesso.</response>
         /// <response code="400">Requisição inválida</response>
         [HttpGet]
-        [Authorize(Policy = "Admin")]
+        //[Authorize(Policy = "Admin")]
         public IActionResult BuscarUsuarios()
         {
             return Ok(_usuarioServices.BuscarUsuarios());

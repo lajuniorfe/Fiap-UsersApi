@@ -21,8 +21,7 @@ builder.Services.AddSwaggerGen();
 #region DI
 
 builder.Services.AddCorrelationIdGenerator();
-builder.Services.AddAplicationCollection();
-builder.Services.AddRepositoryCollection();
+
 
 builder.Services.AddTransient(typeof(BaseLogger<>));
 
@@ -73,18 +72,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.RoutePrefix = string.Empty;
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Users API v1");
+    c.RoutePrefix = string.Empty;
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Users API v1");
 
-    });
-    
-}
-
+});
 
 // Criação do banco
 using (var scope = app.Services.CreateScope())
@@ -96,7 +90,7 @@ using (var scope = app.Services.CreateScope())
 
 app.UseCorrelationMiddleware();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

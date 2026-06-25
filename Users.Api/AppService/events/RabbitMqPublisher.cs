@@ -1,6 +1,4 @@
 ﻿using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 
@@ -14,7 +12,7 @@ namespace Users.AppService.events
         {
             var factory = new ConnectionFactory
             {
-                HostName = "localhost",
+                HostName = "rabbitmq",
                 UserName = "guest",
                 Password = "guest"
             };
