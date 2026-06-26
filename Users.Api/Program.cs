@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Users.Api;
+using Users.Api.Dominio.Base;
 using Users.Api.Middlewares;
-using Users.AppService;
-using Users.Infra;
 using Users.Infra.Context;
 using Users.Infra.Logger;
 
@@ -84,9 +83,11 @@ app.UseSwaggerUI(c =>
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+    SeedData.Seed(db);
 
-    db.Database.EnsureCreated();
 }
+
 
 app.UseCorrelationMiddleware();
 
