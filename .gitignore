@@ -26,7 +26,6 @@
 /Users.AppService/obj/Users.AppService.csproj.nuget.dgspec.json
 /Users.Api/Users.Api.csproj
 /Users.Api/Users.Api.csproj.Backup.tmp
-/Users.AppService/Users.AppService.csproj
 /Users.Api/obj/Debug/net10.0/rpswa.dswa.cache.json
 /Users.Api/obj/Debug/net10.0/EndpointInfo/Users.Api.json
 /Users.Api/obj/Debug/net10.0/Users.Api.AssemblyInfo.cs
@@ -78,3 +77,7 @@
 /Users.AppService/bin/Debug/net10.0/Users.Infra.pdb
 /Users.Api/obj/Container/ContainerDevelopmentMode.cache
 *.cache
+/Users.Api/obj/Debug/net10.0/staticwebassets.build.json.cache
+/Users.Api/obj/Debug/net10.0/staticwebassets.build.json
+/Users.Api/obj/Debug/net10.0/staticwebassets.build.endpoints.json
+/Users.Api/obj/Debug/net10.0/swae.build.ex.cache
