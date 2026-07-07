@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: users-api
+  labels:
+    app: users-api
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: users-api
+
+  template:
+    metadata:
+      labels:
+        app: users-api
+
+    spec:
+      containers:
+        - name: users-api
+          image: seuusuario/users-api:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+
+            - name: RabbitMQ__Host
+              value: rabbitmq
+
+            # Exemplo, se utilizar banco de dados
+            # - name: ConnectionStrings__DefaultConnection
+            #   value: "Host=postgres;Port=5432;Database=users;Username=postgres;Password=123456"
+
+            # Exemplo, se utilizar JWT
+            # - name: Jwt__Secret
+            #   value: "MinhaChaveSuperSecreta"

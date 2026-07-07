@@ -76,3 +76,5 @@
 /Users.AppService/bin/Debug/net10.0/Users.Dominio.pdb
 /Users.AppService/bin/Debug/net10.0/Users.Infra.dll
 /Users.AppService/bin/Debug/net10.0/Users.Infra.pdb
+/Users.Api/obj/Container/ContainerDevelopmentMode.cache
+*.cache
