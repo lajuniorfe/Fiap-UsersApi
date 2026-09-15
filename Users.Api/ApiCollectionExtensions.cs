@@ -14,7 +14,7 @@ namespace Users.Api
             services.AddTransient<ICorrelationIdGenerator, CorrelationIdGenerator>();
             services.AddTransient<IUsuarioAppService, UsuarioAppService>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-            services.AddTransient<IMessageBus, ServiceBusMessageBus>();
+            services.AddScoped<IMessageBus, RabbitMqMessageBus>();
 
             return services;
         }
